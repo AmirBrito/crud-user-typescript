@@ -17,9 +17,13 @@ export class UpdateUserService {
         const repo = getRepository(User);
 
         const user = await repo.findOne(id);
+        
+        if(!await repo.findOne(id)){
+            return new Error("Id not find!");
+        }
 
-        if(!user){
-            return new Error("User not find!");
+        if(await repo.findOne({email})){
+            return new Error("Email already registred");
         }
         
         user.name = name ? name : user.name;
