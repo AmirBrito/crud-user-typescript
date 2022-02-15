@@ -9,7 +9,6 @@ export class GetUsersService {
         const repo = getRepository(User);
 
         const users = await repo.find();
-
         return users;
     }
 }

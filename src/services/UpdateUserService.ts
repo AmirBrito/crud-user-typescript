@@ -1,18 +1,12 @@
 import { getRepository } from "typeorm"
 import { User } from "../entities/User";
+import { UserRequestUpdate } from "../dto/UserRequestUpdate";
 
 
-
-type UserUpdateRequest = {
-    id: string;
-    name: string;
-    email: string;
-    password: string;
-}
 
 
 export class UpdateUserService {
-    async execute({ id, name, email, password }: UserUpdateRequest) {
+    async execute({ id, name, email, password }: UserRequestUpdate) {
 
         const repo = getRepository(User);
     

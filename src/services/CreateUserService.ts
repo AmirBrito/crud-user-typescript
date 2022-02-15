@@ -1,12 +1,8 @@
 import { getRepository } from "typeorm";
 import { User } from "../entities/User";
+import { UserRequest } from "../dto/UserRequest";
 
 
-type UserRequest = {
-    name: string;
-    email: string;
-    password: string;
-}
 
 export class CreateUserService {
     
