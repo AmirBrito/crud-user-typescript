@@ -27,10 +27,10 @@ export class AuthService {
 
             delete user.password;
             
-            return response.json({
+            return {
                 user,
                 token,
-            });
+            };
 
         } catch (error) {
             return {
