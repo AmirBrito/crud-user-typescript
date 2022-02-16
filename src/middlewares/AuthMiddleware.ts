@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
+import { TokenPayLoad } from "../dto/TokenPayLoad";
 
 export function AuthMiddleware( request: Request, response: Response, next: NextFunction){
 
@@ -15,6 +16,13 @@ export function AuthMiddleware( request: Request, response: Response, next: Next
     try {
 
         const data = jwt.verify(token, 'secret');
+        
+        const { id } = data as TokenPayLoad;
+
+        request.userId = id;
+
+
+        return next();
 
     } catch {
         

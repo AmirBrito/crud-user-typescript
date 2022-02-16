@@ -8,10 +8,10 @@ import { UpdateUserController } from "./controllers/UpdateUserController";
 import { AuthMiddleware } from "./middlewares/AuthMiddleware";
 const routes = Router();
 
-routes.post("/users", new CreateUserController().handle);
+routes.post("/users", AuthMiddleware, new CreateUserController().handle);
 routes.get("/users", AuthMiddleware, new GetUsersController().handle);
-routes.delete("/users/:id", new DeleteUserController().handle);
-routes.put("/users/:id", new UpdateUserController().handle);
+routes.delete("/users/:id", AuthMiddleware, new DeleteUserController().handle);
+routes.put("/users/:id", AuthMiddleware, new UpdateUserController().handle);
 
 routes.post("/auth", new AuthController().handle);
 
