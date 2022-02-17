@@ -9,9 +9,15 @@ export class AuthService {
     async authenticate(request: Request, response: Response){
         try{
             const repo = getRepository(User);
+
             const { email,  password } = request.body;
 
-            const user = await repo.findOne({ email });
+            const user = await repo.
+            createQueryBuilder('user').
+            select().
+            addSelect('user.password').
+            where('user.email = :email', { email }).
+            getOne();
 
             const isValidPassword = await bcrypt.compare(password, user.password);
 

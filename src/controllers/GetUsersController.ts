@@ -8,7 +8,7 @@ export class GetUsersController {
         
         const service = new GetUsersService();
         const users = await service.execute();
-
+        
         return response.json(users);
     }
 }

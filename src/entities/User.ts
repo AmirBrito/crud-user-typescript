@@ -21,7 +21,7 @@ export class User {
 
     @IsNotEmpty()
     @Length(6,20)
-    @Column()
+    @Column({ select: false })
     password: string;
 
     @CreateDateColumn()
